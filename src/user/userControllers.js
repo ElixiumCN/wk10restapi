@@ -35,7 +35,12 @@ exports.login = async (req, res) => {
         req.body.username,
         req.body.password
       );
-      res.status(200).send({ username: user.username });
+      const token = user.generateAuthToken();
+      res.status(200).send({ username: user.username, token }); 
+
+
+
+        // insomnia json body username and password
     }
   } catch (error) {
     console.log(error);
