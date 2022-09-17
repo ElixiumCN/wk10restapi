@@ -6,6 +6,7 @@ exports.tokenCheck = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
     const decoded = jwt.verify(token, process.env.SECRET);
+    console.log(token, decoded)
     req.user = await User.findById(decoded._id);
     next();
   } catch (error) {
